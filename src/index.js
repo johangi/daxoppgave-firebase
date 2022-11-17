@@ -115,15 +115,19 @@ inputForm.addEventListener('submit', e => {
 
 function outputInputs (input, id) {
     const html = `
-    <div class="card ms-4 me-4 mt-2" id="${id}">
+    <div class="card ms-4 me-4 mt-2">
         <div class="card-body">
         ${input}
-        </div><button class="delete btn btn-danger" onclick="deleteInput();">X</button>
+        </div><button class="delete btn btn-danger" id="${id}">X</button>
     </div>
     `
     inputOutputField.innerHTML += html;
 }
 
-function deleteInput (e) {
-    console.log(e)
-}
+// function deleteInput (e) {
+//     console.log(e)
+// }
+
+inputOutputField.addEventListener('click', e => {
+    deleteDoc(doc(db, 'inputs', e.target.id))
+})
