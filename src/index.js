@@ -57,19 +57,19 @@ onSnapshot(q, snapshot => {
     inputOutputField.innerHTML = '';
     for (let i = 0; i < inputs.length; i++) {
         let input = inputs[i].input;
-        outputInputs(input);
+        let id = inputs[i].id
+        outputInputs(input, id);
     }
 })
 
 plusMinus.addEventListener('click', e => {
     const emitter = e.target.textContent;
-
     switch (emitter) {
         case '+':
             updateDoc(counterDocRef, { value: parseInt(counterElement.innerText) + 1 })
             break;
         case '-':
-            if (counterDB.innerText > 0) {
+            if (counterElement.innerText > 0) {
                 updateDoc(counterDocRef, { value: parseInt(counterElement.innerText) - 1 })
             }
             break;
@@ -96,8 +96,8 @@ signupForm.addEventListener('submit', e => {
             const username = logins[0].username
             if (pass === password && user === username) {
                 homeScreen.classList.toggle('hidden');
-                loginScreen.classList.toggle('hidden')
-                usernameElement.innerText = username
+                loginScreen.classList.toggle('hidden');
+                usernameElement.innerText = username;
             }
         });
     }
@@ -113,13 +113,17 @@ inputForm.addEventListener('submit', e => {
     inputForm.reset()
 });
 
-function outputInputs (input) {
+function outputInputs (input, id) {
     const html = `
-    <div class="card ms-4 me-4 mt-2">
+    <div class="card ms-4 me-4 mt-2" id="${id}">
         <div class="card-body">
         ${input}
-        </div>
+        </div><button class="delete btn btn-danger" onclick="deleteInput();">X</button>
     </div>
     `
     inputOutputField.innerHTML += html;
+}
+
+function deleteInput (e) {
+    console.log(e)
 }
