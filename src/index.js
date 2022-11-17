@@ -57,8 +57,9 @@ onSnapshot(q, snapshot => {
     inputOutputField.innerHTML = '';
     for (let i = 0; i < inputs.length; i++) {
         let input = inputs[i].input;
-        let id = inputs[i].id
-        outputInputs(input, id);
+        let id = inputs[i].id;
+        let username = inputs[i].username;
+        outputInputs(input, id, username);
     }
 })
 
@@ -108,6 +109,7 @@ inputForm.addEventListener('submit', e => {
     e.preventDefault();
     if (inputForm.input.value) {
         addDoc(inputsDB, {
+            username: usernameElement.innerText,
             input: inputForm.input.value,
             created_at: serverTimestamp()
         })
@@ -115,10 +117,11 @@ inputForm.addEventListener('submit', e => {
     inputForm.reset()
 });
 
-function outputInputs(input, id) {
+function outputInputs(input, id, username) {
     const html = `
     <div class="card ms-4 me-4 mt-2">
         <div class="card-body">
+        <p><b>${username}</b></p>
         ${input}
         </div><button class="delete btn btn-danger" id="${id}">X</button>
     </div>
