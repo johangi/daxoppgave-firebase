@@ -106,14 +106,16 @@ signupForm.addEventListener('submit', e => {
 const inputForm = document.getElementById('inputForm');
 inputForm.addEventListener('submit', e => {
     e.preventDefault();
-    addDoc(inputsDB, {
-        input: inputForm.input.value,
-        created_at: serverTimestamp()
-    })
+    if (inputForm.input.value > 0) {
+        addDoc(inputsDB, {
+            input: inputForm.input.value,
+            created_at: serverTimestamp()
+        })
+    }
     inputForm.reset()
 });
 
-function outputInputs (input, id) {
+function outputInputs(input, id) {
     const html = `
     <div class="card ms-4 me-4 mt-2">
         <div class="card-body">
