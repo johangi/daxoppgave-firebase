@@ -96,8 +96,8 @@ signupForm.addEventListener('submit', e => {
             const password = logins[0].password
             const username = logins[0].username
             if (pass === password && user === username) {
-                homeScreen.classList.toggle('hidden');
-                loginScreen.classList.toggle('hidden');
+                homeScreen.classList.toggle('d-none');
+                loginScreen.classList.toggle('d-none');
                 usernameElement.innerText = username;
             }
         });
