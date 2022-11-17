@@ -106,7 +106,7 @@ signupForm.addEventListener('submit', e => {
 const inputForm = document.getElementById('inputForm');
 inputForm.addEventListener('submit', e => {
     e.preventDefault();
-    if (inputForm.input.value > 0) {
+    if (inputForm.input.value) {
         addDoc(inputsDB, {
             input: inputForm.input.value,
             created_at: serverTimestamp()
